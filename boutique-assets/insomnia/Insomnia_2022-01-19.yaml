@@ -1,0 +1,63 @@
+_type: export
+__export_format: 4
+__export_date: 2022-01-20T05:21:15.066Z
+__export_source: insomnia.desktop.app:v2021.7.2
+resources:
+  - _id: req_9ff7a0db055d4f19927078aebc711cbc
+    parentId: wrk_f0d2e211bb084c5594bd26728b1c6d27
+    modified: 1642655762052
+    created: 1642655752782
+    url: "{{ _.base_path }}/public/healthcheck"
+    name: healthcheck
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1642655752782
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_f0d2e211bb084c5594bd26728b1c6d27
+    parentId: null
+    modified: 1642655707732
+    created: 1642655707732
+    name: Boutique
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: env_f60ae0afe8674074ee09f5c3e702b4adeb7b149c
+    parentId: wrk_f0d2e211bb084c5594bd26728b1c6d27
+    modified: 1642655740109
+    created: 1642655707744
+    name: Base Environment
+    data:
+      base_path: http://localhost:8080/boutique-service/api
+    dataPropertyOrder:
+      "&":
+        - base_path
+    color: null
+    isPrivate: false
+    metaSortKey: 1642655707744
+    _type: environment
+  - _id: jar_f60ae0afe8674074ee09f5c3e702b4adeb7b149c
+    parentId: wrk_f0d2e211bb084c5594bd26728b1c6d27
+    modified: 1642655707746
+    created: 1642655707746
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_2c7412a625824e9e99e556c575701645
+    parentId: wrk_f0d2e211bb084c5594bd26728b1c6d27
+    modified: 1642655707736
+    created: 1642655707736
+    fileName: Boutique
+    contents: ""
+    contentType: yaml
+    _type: api_spec
