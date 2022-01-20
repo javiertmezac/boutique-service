@@ -12,10 +12,14 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 
 public class Launcher {
+
+    private static Logger logger = LoggerFactory.getLogger(Launcher.class);
 
     public static void main(String[] args) {
         startJettyServer();
@@ -62,14 +66,12 @@ public class Launcher {
 
         jettyServer.setHandler(handlers);
 
-
         try {
             jettyServer.start();
+            logger.info("Server started");
             jettyServer.join();
         } catch (Exception ex) {
-            //todo: implement logger
-//            LOGGER.error(ex.getMessage());
-            System.out.println(ex.getMessage());
+            logger.error(ex.getMessage());
         } finally {
             jettyServer.destroy();
         }
