@@ -13,6 +13,7 @@
         <module>boutique-service-impl</module>
         <module>boutique-server</module>
         <module>jacoco-aggregate-report</module>
+        <module>boutique-service-mybatis</module>
     </modules>
 
     <properties>

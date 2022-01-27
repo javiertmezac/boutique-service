@@ -1,0 +1,21 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--    MyBatis3DynamicSql-->
+    <context id="BoutiqueTables" targetRuntime="MyBatis3DynamicSql">
+
+        <plugin type="org.mybatis.generator.plugins.VirtualPrimaryKeyPlugin" />
+
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://localhost;database=dbBoutiqueService;user=sa;password=Password123!" />
+
+        <javaModelGenerator targetPackage="com.jtmc.apps.boutique.domain" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="com.jtmc.apps.boutique.repository" targetProject="src/main/java"/>
+
+        <table tableName="Users" >
+            <property name="virtualKeyColumns" value="id"/>
+        </table>
+    </context>
+</generatorConfiguration>
