@@ -31,6 +31,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <skip>true</skip>
                     <configurationFile>${basedir}/src/main/resources/mbg.xml</configurationFile>
                 </configuration>
                 <dependencies>
