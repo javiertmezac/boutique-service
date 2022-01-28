@@ -4,8 +4,11 @@ import com.google.common.collect.Sets;
 import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import com.google.inject.name.Names;
+import com.jtmc.apps.api.v1.login.LoginApi;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApi;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApiImpl;
+import com.jtmc.apps.impl.api.v1.login.LoginApiImpl;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -15,6 +18,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Properties;
 import java.util.Set;
 
 public class Launcher {
@@ -29,6 +33,11 @@ public class Launcher {
         @Override
         protected void configure() {
             bind(HealthcheckApi.class).to(HealthcheckApiImpl.class);
+            bind(LoginApi.class).to(LoginApiImpl.class);
+
+            Properties myProperties = new Properties();
+            myProperties.setProperty("key", System.getenv("key"));
+            Names.bindProperties(binder(), myProperties);
         }
     }
 
@@ -41,7 +50,8 @@ public class Launcher {
         @Override
         protected Set<Object> serviceInstances(Injector injector) {
             return Sets.newHashSet(
-                    injector.getInstance(HealthcheckApiImpl.class)
+                    injector.getInstance(HealthcheckApiImpl.class),
+                    injector.getInstance(LoginApiImpl.class)
             );
         }
     }
