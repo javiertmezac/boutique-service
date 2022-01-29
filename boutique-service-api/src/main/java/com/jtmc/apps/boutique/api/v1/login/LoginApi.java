@@ -1,4 +1,4 @@
-package com.jtmc.apps.api.v1.login;
+package com.jtmc.apps.boutique.api.v1.login;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

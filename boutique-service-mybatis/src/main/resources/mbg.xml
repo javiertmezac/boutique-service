@@ -16,6 +16,7 @@
 
         <table tableName="Users" >
             <property name="virtualKeyColumns" value="id"/>
+            <columnOverride column="registration" javaType="java.time.Instant" />
         </table>
     </context>
 </generatorConfiguration>

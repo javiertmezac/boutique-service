@@ -1,4 +1,4 @@
-package com.jtmc.apps.api.v1.login;
+package com.jtmc.apps.boutique.api.v1.login;
 
 public class LoginResponse {
     private String id_token;
