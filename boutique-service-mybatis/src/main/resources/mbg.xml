@@ -8,12 +8,16 @@
         <plugin type="org.mybatis.generator.plugins.VirtualPrimaryKeyPlugin" />
 
         <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-                        connectionURL="jdbc:sqlserver://localhost;database=dbBoutiqueService;user=sa;password=Password123!" />
+                        connectionURL="jdbc:sqlserver://localhost;database=DB_Boutique_Service;user=sa;password=Password123!" />
 
         <javaModelGenerator targetPackage="com.jtmc.apps.boutique.domain" targetProject="src/main/java"/>
 
-        <javaClientGenerator targetPackage="com.jtmc.apps.boutique.repository" targetProject="src/main/java"/>
+        <javaClientGenerator targetPackage="com.jtmc.apps.boutique.repository.mapper" targetProject="src/main/java"/>
 
+        <table tableName="Persona" >
+            <property name="virtualKeyColumns" value="id"/>
+            <columnOverride column="registration" javaType="java.time.Instant" />
+        </table>
         <table tableName="Users" >
             <property name="virtualKeyColumns" value="id"/>
             <columnOverride column="registration" javaType="java.time.Instant" />

@@ -5,10 +5,10 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.name.Names;
-import com.jtmc.apps.api.v1.login.LoginApi;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApi;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApiImpl;
-import com.jtmc.apps.impl.api.v1.login.LoginApiImpl;
+import com.jtmc.apps.boutique.api.v1.login.LoginApi;
+import com.jtmc.apps.boutique.api.v1.login.LoginApiImpl;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
@@ -23,7 +23,7 @@ import java.util.Set;
 
 public class Launcher {
 
-    private static Logger logger = LoggerFactory.getLogger(Launcher.class);
+    final private static Logger logger = LoggerFactory.getLogger(Launcher.class);
 
     public static void main(String[] args) {
         startJettyServer();
