@@ -9,12 +9,14 @@ import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApi;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApiImpl;
 import com.jtmc.apps.boutique.api.v1.login.LoginApi;
 import com.jtmc.apps.boutique.api.v1.login.LoginApiImpl;
+import com.jtmc.apps.boutique.guice.BoutiqueMyBatisModule;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.mybatis.guice.datasource.helper.JdbcHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +34,9 @@ public class Launcher {
     private static class JettyLauncherModule extends AbstractModule {
         @Override
         protected void configure() {
+            install(new BoutiqueMyBatisModule());
+            install(JdbcHelper.SQL_Server_2005_MS_Driver);
+
             bind(HealthcheckApi.class).to(HealthcheckApiImpl.class);
             bind(LoginApi.class).to(LoginApiImpl.class);
 
