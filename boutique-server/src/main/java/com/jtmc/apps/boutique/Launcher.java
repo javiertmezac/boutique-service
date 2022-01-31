@@ -4,22 +4,28 @@ import com.google.common.collect.Sets;
 import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import com.google.inject.name.Names;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApi;
 import com.jtmc.apps.boutique.api.v1.healthcheck.HealthcheckApiImpl;
+import com.jtmc.apps.boutique.api.v1.login.LoginApi;
+import com.jtmc.apps.boutique.api.v1.login.LoginApiImpl;
+import com.jtmc.apps.boutique.guice.BoutiqueMyBatisModule;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.mybatis.guice.datasource.helper.JdbcHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Properties;
 import java.util.Set;
 
 public class Launcher {
 
-    private static Logger logger = LoggerFactory.getLogger(Launcher.class);
+    final private static Logger logger = LoggerFactory.getLogger(Launcher.class);
 
     public static void main(String[] args) {
         startJettyServer();
@@ -28,7 +34,15 @@ public class Launcher {
     private static class JettyLauncherModule extends AbstractModule {
         @Override
         protected void configure() {
+            install(new BoutiqueMyBatisModule());
+            install(JdbcHelper.SQL_Server_2005_MS_Driver);
+
             bind(HealthcheckApi.class).to(HealthcheckApiImpl.class);
+            bind(LoginApi.class).to(LoginApiImpl.class);
+
+            Properties myProperties = new Properties();
+            myProperties.setProperty("key", System.getenv("key"));
+            Names.bindProperties(binder(), myProperties);
         }
     }
 
@@ -41,7 +55,8 @@ public class Launcher {
         @Override
         protected Set<Object> serviceInstances(Injector injector) {
             return Sets.newHashSet(
-                    injector.getInstance(HealthcheckApiImpl.class)
+                    injector.getInstance(HealthcheckApiImpl.class),
+                    injector.getInstance(LoginApiImpl.class)
             );
         }
     }
